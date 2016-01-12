@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load latest_products %}
+{% load mezzanine_tags shop_tags i18n %}
+
+
+{% block main %}
+
+<div id="this-carousel-id" class="carousel slide"><!-- class of slide for animation -->
+  <div class="carousel-inner">
+
+  {% for banner in banners %}
+    <div class="item {% if forloop.first %} active {% endif %}"><!-- class of active since it's the first item -->
+      <a href="#">
+      <img src="{{ MEDIA_URL }}{{ banner.background_image}}" alt="" />
+      </a>
+      <div class="carousel-caption">
+        <p>Caption text here</p>
+      </div>
+
+    </div>
+  {% endfor %}
+
+  </div><!-- /.carousel-inner -->
+  <!--  Next and Previous controls below
+        href values must reference the id for this carousel -->
+    <a class="carousel-control left" href="#this-carousel-id" data-slide="prev">&lsaquo;</a>
+    <a class="carousel-control right" href="#this-carousel-id" data-slide="next">&rsaquo;</a>
+</div><!-- /.carousel -->
+
+
+<!--
+<h2>Congratulations!</h2>
+<p>
+    Welcome to your new Mezzanine powered website.
+    Here are some quick links to get you started:
+</p>
+<ul>
+    <li><a href="/admin/">Log in to the admin interface</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/content-architecture.html">Creating custom page types</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#templates">Modifying HTML templates</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html#why-isn-t-the-homepage-a-page-object-i-can-edit-via-the-admin">Changing this homepage</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/frequently-asked-questions.html">Other frequently asked questions</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/configuration.html#default-settings">Full list of settings</a></li>
+    <li><a href="http://mezzanine.jupo.org/docs/deployment.html">Deploying to a production server</a></li>
+</ul>
+-->
+
+<br>
+<div class="row text-center">
+    <h1> Latest Products </h1>
+</div>
+
+<div class="row product-list">
+
+    {% for product in products %}
+      <div class="col-xs-6 col-sm-4 col-lg-3 product-thumb">
+          <a href="{{ product.get_absolute_url }}" class="thumbnail">
+              <img src="{{ MEDIA_URL }}{{ product.image }}">
+              <div class="caption">
+                  <h6>{{ product.title }} </h6>
+                  <div class="price-info">
+                      {% if product.has_price %}
+                        {% if product.on_sale %}
+                            <span class="old-price">{{ product.unit_price|currency }}</span>
+                            {% trans "On sale:" %}
+                            {% endif %}
+                            <span class="price">{{ product.price|currency }}</span>
+                        {% else %}
+                            <span class="coming-soon">{% trans "Coming soon" %}</span>
+                        {% endif %}
+                  </div>
+              </div>
+          </a>
+      </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,25 @@
+/*!
+ * Bootstrap v3.3.6 (http://getbootstrap.com)
+ * Copyright 2011-2015 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ *//*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+
+body{
+    padding-top: 70px;
+}
+
+.navbar-brand img{
+    height: 40px;
+}
+
+.navbar-brand {
+    float: left;
+    padding: 5px 5px;
+    font-size: 18px;
+    line-height: 20px;
+}
+
+ul.navbar-nav{
+    margin-left: 30px;
+}
